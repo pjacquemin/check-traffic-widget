@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">CheckTrafficWidget</string>
+    <string name="google_api_key">AIzaSyDP06f4ON-yhfYXwHDR_EIanpfWnl-GF8E</string>
+    <string name="home_address">48 allee des rhododendrons saint-servais</string>
+    <string name="work_address">rue de clairvaux Louvain-la-Neuve</string>
+</resources>
