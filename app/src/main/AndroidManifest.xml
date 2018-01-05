@@ -21,6 +21,7 @@
             android:name=".CheckTrafficWidgetProvider" >
             <intent-filter >
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_ENABLED" />
             </intent-filter>
 
             <meta-data

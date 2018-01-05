@@ -56,9 +56,7 @@ public class GoogleAPIAsyncRequest extends AsyncTask<String, Void, Void>{
                 api_key = context.getResources().getString(R.string.google_api_key);
                 work_address = context.getResources().getString(R.string.work_address);
                 home_address = context.getResources().getString(R.string.home_address);
-                geo_api_context = new GeoApiContext.Builder()
-                        .apiKey(api_key)
-                        .build();
+                geo_api_context = GoogleAPIClientSingleton.getInstance().getGeoApiContext();
                 home_to_work_result = DirectionsApi.getDirections(geo_api_context, home_address, work_address)
                         .departureTime(new DateTime())
                         .await();
