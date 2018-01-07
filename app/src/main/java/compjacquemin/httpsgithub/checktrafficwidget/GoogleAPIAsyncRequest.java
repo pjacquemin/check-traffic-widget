@@ -21,7 +21,6 @@ public class GoogleAPIAsyncRequest extends AsyncTask<String, Void, Void>{
     private AppWidgetManager app_widget_manager;
     private int[] app_widget_ids;
     private RemoteViews remote_views;
-    private String api_key;
     private String home_address;
     private String work_address;
     private GeoApiContext geo_api_context;
@@ -53,10 +52,9 @@ public class GoogleAPIAsyncRequest extends AsyncTask<String, Void, Void>{
             for (int id : app_widget_ids) {
                 this.app_widget_id = id;
                 app_widget_manager.updateAppWidget(app_widget_id, remote_views);
-                api_key = context.getResources().getString(R.string.google_api_key);
                 work_address = context.getResources().getString(R.string.work_address);
                 home_address = context.getResources().getString(R.string.home_address);
-                geo_api_context = GoogleAPIClientSingleton.getInstance().getGeoApiContext();
+                geo_api_context = GoogleAPIClientSingleton.getInstance(this.context).getGeoApiContext();
                 home_to_work_result = DirectionsApi.getDirections(geo_api_context, home_address, work_address)
                         .departureTime(new DateTime())
                         .await();
@@ -74,8 +72,8 @@ public class GoogleAPIAsyncRequest extends AsyncTask<String, Void, Void>{
             e.printStackTrace();
         }
         catch (Exception e) {
-            remote_views.setTextViewText(R.id.home_to_work_textview, "Error");
-            remote_views.setTextViewText(R.id.work_to_home_textview, "Error");
+            home_to_work_info_text = "Error";
+            work_to_home_info_text = e.toString();
         }
 
         return null;
