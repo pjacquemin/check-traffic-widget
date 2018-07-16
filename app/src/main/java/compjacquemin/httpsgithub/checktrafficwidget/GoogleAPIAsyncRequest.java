@@ -93,7 +93,10 @@ public class GoogleAPIAsyncRequest extends AsyncTask<String, Void, Void>{
 
         remote_views.setOnClickPendingIntent(R.id.home_to_work_textview, pendingIntent);
         remote_views.setOnClickPendingIntent(R.id.work_to_home_textview, pendingIntent);
-        app_widget_manager.updateAppWidget(app_widget_id, remote_views);
+
+        for (int app_widget_id : app_widget_ids) {
+            app_widget_manager.updateAppWidget(app_widget_id, remote_views);
+        }
 
         super.onPostExecute(result);
     }
