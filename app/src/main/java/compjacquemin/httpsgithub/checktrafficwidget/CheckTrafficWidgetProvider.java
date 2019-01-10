@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.widget.RemoteViews;
 
 import com.google.maps.DirectionsApi;
@@ -15,6 +16,7 @@ import org.joda.time.DateTime;
 
 public class CheckTrafficWidgetProvider extends AppWidgetProvider {
     private RemoteViews remote_views;
+    private SharedPreferences shared_pref;
     private String home_address;
     private String work_address;
     private GeoApiContext geo_api_context;
@@ -31,10 +33,10 @@ public class CheckTrafficWidgetProvider extends AppWidgetProvider {
         intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, app_widget_ids);
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pending_intent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        remote_views.setOnClickPendingIntent(R.id.home_to_work_textview, pendingIntent);
-        remote_views.setOnClickPendingIntent(R.id.work_to_home_textview, pendingIntent);
+        remote_views.setOnClickPendingIntent(R.id.home_to_work_textview, pending_intent);
+        remote_views.setOnClickPendingIntent(R.id.work_to_home_textview, pending_intent);
         remote_views.setTextViewText(R.id.home_to_work_textview, "Refresh ...");
         remote_views.setTextViewText(R.id.work_to_home_textview, "Refresh ...");
 
@@ -43,8 +45,9 @@ public class CheckTrafficWidgetProvider extends AppWidgetProvider {
         }
 
         try {
-            work_address = context.getResources().getString(R.string.work_address);
-            home_address = context.getResources().getString(R.string.home_address);
+            shared_pref = context.getSharedPreferences(MainActivity.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+            home_address = shared_pref.getString("home_address", "");
+            work_address = shared_pref.getString("work_address", "");
             geo_api_context = GoogleAPIClientSingleton.getInstance(context).getGeoApiContext();
             home_to_work_result_api_request = DirectionsApi.getDirections(geo_api_context, home_address, work_address)
                     .departureTime(new DateTime());

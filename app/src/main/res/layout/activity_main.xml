@@ -9,4 +9,43 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="compjacquemin.httpsgithub.checktrafficwidget.MainActivity">
+
+    <TextView
+        android:id="@+id/home_address_label"
+        android:text="Home address:"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/home_place_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="None home place is set" />
+    <Button
+        android:id="@+id/open_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Change home address" />
+
+    <TextView
+        android:id="@+id/work_address_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Work address:"
+        android:layout_marginTop="170dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    <TextView
+        android:id="@+id/work_place_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:text="None work place is set" />
+    <Button
+        android:id="@+id/open_button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="266dp"
+        android:text="Change work address" />
 </RelativeLayout>

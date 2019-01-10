@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">CheckTrafficWidget</string>
-    <string name="google_api_key"></string>
-    <string name="home_address"></string>
-    <string name="work_address"></string>
+    <string name="place_details">
+    <![CDATA[
+        <b>%1$s</b>
+        <br/>
+        Address: %2$s
+    ]]>
+    </string>
 </resources>
